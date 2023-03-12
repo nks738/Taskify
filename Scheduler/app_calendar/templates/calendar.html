@@ -1,0 +1,37 @@
+{% load static %}
+{% load render_bundle from webpack_loader %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    {% comment %} {% render_bundle 'main' 'css' %} {% endcomment %}
+</head>
+
+<body>
+    <h1>A calendar will show here.</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="Scheduler name" placeholder="Add Scheduler">
+        <input type="submit" name="type" value="add">
+    </form>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="Scheduler name" placeholder="Delete Scheduler">
+        <input type="submit" name="type" value="delete">
+    </form>
+    <table border="1">
+        <tread>
+            {%  for obj in data_list %}
+            <tr>
+                <td>{{ obj.Scheduler_name }}</td>
+            </tr>
+            {% endfor %}
+        </tread>
+    </table>
+
+    {% comment %} {% render_bundle 'main' 'js' %} {% endcomment %}
+</body>
+</html>

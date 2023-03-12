@@ -1,0 +1,42 @@
+{% load static %}
+{# Load the tag library #}
+{% load bootstrap5 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CS180 Time Scheduler Login</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <h1>Welcome to the CS180 Time Scheduler!</h1>
+    <form method="post" action="/login/">
+        {% csrf_token %}
+        <input type="text" name="Username" placeholder="Username">
+        <input type="text" name="Password" placeholder="Password">
+        <input type="submit" value="Login">
+    </form>
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+
+    {# Display a form #}
+    <form method="post" class="form" action="/login/">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+        Sign in
+        </button>
+        <button type="button" class="btn btn-primary">
+        Sign up
+        </button>
+    {% endbuttons %}
+    </form>
+</body>
+</html>
